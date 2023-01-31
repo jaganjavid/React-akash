@@ -1,0 +1,149 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@mixin myFlex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+input:focus{
+    outline: none;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0px auto;
+    padding: 0px 15px;
+}
+
+.my-btn{
+    padding: 8px 25px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #333 !important;
+}
+
+
+main{
+    background:url("./img/banner/bg.png") no-repeat center;
+    background-size: cover;
+}
+
+// Header
+
+header{
+    padding: 15px 0px;
+    color: #ffffff;
+    .header-wrapper{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ul{
+            display: flex;
+            gap: 25px;
+        }
+        a{
+            color: #ffffff;
+        }
+    }
+}
+
+// Banner
+
+// main{
+//     height: 1300px;
+// }
+
+.banner-wrapper{
+    padding: 80px 0px;
+    text-align: center;
+    color: #ffffff;
+    h1{
+        font-size: 74px;
+        margin-bottom: 50px;
+    }
+    p{
+        font-size: 20px;
+        margin-bottom: 50px;
+    }
+    >div{
+        width: 60%;
+        margin: 0px auto;
+        div{
+            display: flex;
+            position: relative;
+            height: 65px;
+            input{
+                width: 100%;
+                // padding: 10px 5px;
+                padding:0px 0px 0px 50px;
+                border-radius: 50px;
+                border: none;
+            }
+            button{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 15px;
+                height: 70%;
+                width: 20%;
+                border-radius: 30px;
+                border: none;
+            }
+        }
+    }
+}
+
+.dashboard{
+    text-align: center;
+}
+
+// company Start
+
+.company{
+    padding: 0px 0px 100px 0px;
+    .company-wrapper{
+        @include myFlex();
+        flex-wrap: wrap;
+        >div{
+            width: 140px;
+            img{
+                width: 100%;
+            }
+        }
+    }
+
+}
+
+
+@media only screen and (max-width:768px){
+    .company{
+        .company-wrapper{
+            justify-content: center;
+            >div{
+                text-align: center;
+                width: 30%;
+                img{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}

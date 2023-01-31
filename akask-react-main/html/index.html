@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First HTML</title>
+</head>
+<body>
+
+    <header style="background-color: #333333;">
+        <h3 style="color:#ffffff;">Logo</h3>
+        <nav style="background-color: lightgreen;">
+            <a style="color:#ffffff;" href="./index.html">Home</a>
+            <a style="color:#ffffff;" href="./about.html">About</a>
+            <a style="color:#ffffff;" href="./services.html">Services</a>
+            <a style="color:#ffffff;" href="./contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div>
+            <h1>Welcome to my Company</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat totam, in vitae est maxime, ut cumque sed corrupti aut officiis ab! Doloremque mollitia assumenda cumque?</p>
+            <button>BUY</button>
+        </div>
+    </section>
+
+    <section id="product">
+        <h2>My Product</h2>
+        <div>
+            <h5>product 1</h5>
+            <button>BUY</button>
+        </div>
+        <div>
+            <h5>product 2</h5>
+            <button>BUY</button>
+        </div>
+        <div>
+            <h5>product 3</h5>
+            <button>BUY</button>
+        </div>
+    </section>
+    
+    <section id="cat"> 
+        <h2>List of Item</h2>
+       <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+       </ul>
+       <ol>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+       </ol>
+    </section>
+
+    <section id="tabel">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>Jagan</td>
+                <td>1000$</td>
+                <td>20/05/2022</td>
+            </tr>
+            <tr>
+                <td>Akash</td>
+                <td>1500$</td>
+                <td>21/05/2022</td>
+            </tr>
+            <tr>
+                <td>Arun</td>
+                <td>2000$</td>
+                <td>22/05/2022</td>
+            </tr>
+        </table>
+    </section>
+
+    <br>
+    <hr>
+    <br>
+
+    <section id="contact">
+        <form>
+            <div>
+                <label>Enter Your Name</label>
+                <div>
+                    <input required type="text" placeholder="Enter your Name">
+                </div>
+            </div>
+            <div>
+                <label>Enter Your Age</label>
+                <div>
+                    <input required type="number" placeholder="Enter your age">
+                </div>
+            </div>
+            <div>
+                <label>Enter Your Email</label>
+                <div>
+                    <input required type="email" placeholder="Enter your Email">
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <input required type="checkbox" id="product1" name="product1">
+                    <label for="product1"> product1</label>
+                </div>
+                <div>
+                    <input required type="checkbox" id="product1" name="product1">
+                    <label for="product1"> product2</label>
+                </div>
+                <div>
+                    <input required type="checkbox" id="product1" name="product1">
+                    <label for="product1">product3</label>
+                </div>
+            </div>
+
+            <div>
+                <select required>
+                    <option disabled value="item1">item1</option>
+                    <option selected value="item2">item2</option>
+                    <option value="item3">item3</option>
+                </select>
+            </div>
+
+            <button>Submit</button>
+        </form>
+    </section>
+
+
+    <footer>
+        <p>Copywrite 2022</p>
+    </footer>
+    
+   
+
+    <div style="margin-bottom: 500px;"></div>
+</body>
+</html>

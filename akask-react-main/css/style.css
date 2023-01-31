@@ -1,0 +1,251 @@
+/* .box{
+    background-color:coral;
+    color: white;
+}
+
+.box-heading{
+  color: yellow;  
+} */
+
+/* COLOR NAME */
+/* .color-heading{
+    color: #a52a2a;
+} */
+
+/* HEX DECIMAL */
+/* .color-heading{
+    color: #a52a2a;
+} */
+
+/* RGB */
+/* .color-heading{
+    color: rgb(230, 28, 93);
+} */
+
+/* RGBA */
+/* .color-heading{
+    color: rgba(230, 28, 93,0.8);
+} */
+
+/* 
+.fonts{
+    font-family: 'Montserrat', sans-serif;
+}
+ */
+
+ /* SELECT ALL THE ELEMENT IN A HTML */
+
+*{
+    /* SWITCH OFF THE ALL DEFAULT STYLE TO THE ELEMENT */
+    margin: 0px; 
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrat', sans-serif; 
+    margin: 100px;
+    margin-bottom: 500px;
+}
+
+/* In CSS, the term "box model" is used when talking about design and layout.
+
+The CSS box model is essentially a box that wraps around every HTML element. 
+It consists of: margins, borders, padding, and the actual content. The image below
+illustrates the box model: */
+
+/* .box-model{
+     margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px; 
+
+    FOR ALL SIDE SAME VALUE 
+
+     border-top: 5px solid #0000ff;
+    border-left: 5px dashed #25ea13;
+    border-right: 5px dotted #720042;
+    border-bottom: 5px double #ffdd00; 
+   
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px; 
+    
+   
+} */
+
+/* FOR ALL SIDE SAME VALUE */
+
+/* .box-model{
+    border: 5px solid red;
+    margin: 50px;
+    padding: 50px;
+} */
+
+/* THE POSITION ARE TOP > RIGHT > BOTTOM > LEFT */
+/* .box-model{
+    margin: 50px 100px 150px 200px;
+    padding: 50px 100px 150px 200px;
+    border: 5px solid red;
+} */
+
+/* THE POSITION ARE TOP - BOTTOM > LEFT - RIGHT */
+/* .box-model{
+    margin: 50px 100px;
+    padding: 50px 100px;
+    border: 5px solid red;
+} */
+
+/* ul{
+    list-style: none;
+} */
+
+/* box-sizing */
+
+/* .box-1{
+    width: 250px;
+    height: 250px;
+    background-color: blue;
+    padding: 50px;
+}
+
+.box-2{
+    width: 250px;
+    height: 250px;
+    background-color:purple;
+    padding: 50px;
+    box-sizing: border-box;
+} */
+
+/* POSITION */
+
+/* .position-box{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+} */
+
+/* .static{
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    position: static;
+    top: 20px;
+    left: 20px;
+} */
+
+/* .position-box{
+    position: static;
+    top: 50px;
+    left: 50px;
+} */
+
+/* .relative{
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    position: relative;
+    top: 20px;
+    left: 20px;
+} */
+
+/* .absolute{
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+} */
+
+/* .fixed{
+    width: 50px;
+    height: 50px;
+    background-color: blueviolet;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+} */
+
+/* A CSS pseudo-element is used to style specified parts of an element. */
+
+/* .para::first-line{
+    color: blue;
+} */
+
+/* .para::first-letter{
+    color: blue; */
+    /* font-size: 50px; */
+/* } */
+
+/* ::marker{ */
+    /* color: blue; */
+    /* font-size: 50px; */
+/* } */
+
+
+/* .para::selection{
+ background-color: green; 
+}  */
+
+/* .select-the-element ul li:first-child{
+    color: red;
+}
+
+.select-the-element ul li:last-child{
+    color: red;
+}
+
+.select-the-element ul li:nth-child(2){
+    color: red;
+} */
+
+/* .select-the-element p:first-of-type{
+    color: blue;
+}
+.select-the-element p:last-of-type(2){
+    color: red;
+}
+.select-the-element p:nth-of-type(2){
+    color: red;
+} */
+
+/* .select-the-element ul li:nth-child(3n + 1){
+    color: green;
+} */
+
+button{
+    background-color: red;
+    border: none;
+    padding: 15px 30px;
+    color: #ffffff;
+    transition: 2s;
+}
+
+button:hover{
+    background-color:#ff0000;
+}
+
+/* .test{
+    border: 2px solid rgb(26, 7, 233);
+    margin: 50px 25px;
+    padding: 50px;
+}
+
+
+.box-size{
+    width: 200px;
+    height: 200px;
+    border: 1px solid blue;
+    padding: 50px;
+} */
+
+.position-new{
+    position: static;
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    top: 20px;
+    left: 20px;
+}

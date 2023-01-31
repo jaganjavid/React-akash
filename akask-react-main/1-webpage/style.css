@@ -1,0 +1,153 @@
+/* SELECT ALL THE ELEMENT */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* SHARED STYLES STYLE */
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    width: 80%;
+    margin: 0px auto;
+}
+
+/* SHARED STYLES STYLE */
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* HEADER START */
+header{
+    background-color: #2932FD;
+    padding: 15px 0px;
+}
+header h4{
+    font-size: 36px;
+    font-weight: 600;
+    color: #ffffff;
+}
+/* HEADER END */
+
+
+/* NAVIGATION START */
+nav {
+    background-color: #373737;
+}
+
+nav a{
+    color: #ffffff;
+    margin: 15px 25px;
+    display: inline-block;
+}
+
+nav a:first-child{
+    margin-left: 0px;
+}
+/* NAVIGATION END */
+
+/* BANNER START */
+.banner{
+    text-align: center;
+    padding: 200px 0px;
+    background:url("./img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.banner h1{
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-size: 48px;
+}
+
+.banner h1 span {
+    display: block;
+}
+
+.banner button{
+    font-size: 20px;
+    padding: 15px 50px;
+    background-color: #ffffff;
+    color: #111111;
+    border: none;
+    border-radius: 10px;
+}
+/* BANNER END */
+
+/* OUR ITEMS START */
+.our-items{
+    padding: 50px 0px;
+}
+.our-items h2{
+    font-size: 36px;
+    margin-bottom: 25px;
+}
+
+.our-items-boxs{
+    display: flex;
+    gap: 20px;
+}
+
+.our-items-boxs div{
+    color: #ffffff;
+    padding: 15px;
+    background-color: #2A25FF;
+    border-radius: 15px;
+}
+
+.our-items-boxs div h4{
+    margin-bottom: 20px;
+}
+
+/* OUR ITEMS END */
+
+/* POSITION START */
+.position{
+    padding: 50px 0px;
+}
+
+.position h2{
+    margin-bottom: 25px;
+    font-size: 36px;
+}
+.position-parent{
+    height: 400px;
+    width: 400px;
+    background-color: blue;
+    margin: 0px auto;
+    position: relative;
+}
+
+.position-parent div:first-child{
+    background-color: yellow;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.position-parent div:last-child{
+    background-color: #d7d700;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+/* POSITION END */
+
+/* FOOTER START */
+footer{
+    padding: 15px 0px;
+    background-color: #262626;
+    text-align: center;
+    color: #ffffff;
+    font-size: 25px;
+}
+/* FOOTER END */
