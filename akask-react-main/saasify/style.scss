@@ -9,10 +9,11 @@
     justify-content: space-between;
     align-items: center;
 }
- h1,h2,h3,h4,h5,h6,p{
+
+h1,h2,h3,h4,h5,h6,p{
     margin: 0px;
     padding: 0px;
- }
+}
 
 body{
     font-family: 'Inter', sans-serif;
@@ -20,6 +21,7 @@ body{
 
 ul{
     list-style: none;
+    padding: 0px;
 }
 
 a{
@@ -50,6 +52,11 @@ input:focus{
     border-radius: 30px;
     display: inline-block;
 }
+
+.my-btn-white{
+    background:#ffffff;
+    padding: 10px 25px;
+}
 h2{
     font-size: 50px;
     font-weight: 700;
@@ -61,7 +68,9 @@ h2{
 
 .services,
 .powerful,
-.smarter{
+.smarter,
+.about-us,
+.business{
     padding: 100px 0px;
 }
 
@@ -226,7 +235,131 @@ header{
         }
     }
 }
+// Result 
+
+.price-btn{
+    padding: 10px;
+    display: inline-block;
+    background-color: #F6F5FF;
+    gap: 15px;
+    border-radius: 15px;
+    position: relative;
+    margin-top: 50px;
+    img{
+        position: absolute;
+        top: -40px;
+        right: -120px;
+    }
+}
+
+.price-btn button{
+    padding: 10px 25px;
+    color: #111111;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.30s;
+}
+
+.price-btn button:hover{
+    background-image: linear-gradient(167deg,#2272FF,#0D03C3);
+    color: #ffffff !important;
+}
+
+.pb-active{ 
+    background-image: linear-gradient(167deg,#2272FF,#0D03C3);
+    color: #ffffff !important;
+}
+
+.results{
+    .result-wrapper{
+        .active-box{
+            background:linear-gradient(97deg,#2272FF,#0D03C3);
+            color: #ffffff;
+            span{
+                color: #ffffff !important;
+            }
+        }
+        >div>div>div{
+            padding: 50px 20px;
+            background-color: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0px 17px 16px 3px #00000017;
+            &:hover{
+                background:linear-gradient(97deg,#2272FF,#0D03C3);
+                color: #ffffff;
+                .num{
+                    color: #ffffff;
+                }
+                ul{
+                    li {
+                        span{
+                            background: url("./img/result/tick-w.svg") no-repeat;
+                        }
+                    }
+                   
+                }
+            }
+           
+        }
+        >div>div>div>div{
+            border-bottom: 1px solid grey;
+            margin-bottom: 25px;
+        }
+        >div>div>div>div>span:nth-of-type(1){
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        >div>div>div>div>p>span:first-child{
+            font-size: 56px;
+            color: #0D03C3;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+    a{
+        margin-top: 50px;
+    }
+    }
+    ul{ 
+        min-height: 270px;
+        li {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+            span{
+                width: 30px;
+                height: 20px;
+                display: inline-block;
+                background: url("./img/result/tick-b.png") no-repeat;
+            }
+        }        
+    }  
+}
+
+
+// About-us Start
+
+.about-us{
+  .shadow{
+    border-radius: 15px;
+  }
+}
+
+// business Start
+
+.business{
+    background-color: #040335;
+    a{
+        color: #111111;
+    }
+}
+
+
 @media only screen and (max-width:768px){
+       
+    .results ul {
+       min-height: auto;
+    }
     .company{
         .company-wrapper{
             justify-content: center;
@@ -239,4 +372,5 @@ header{
             }
         }
     }
+    
 }
