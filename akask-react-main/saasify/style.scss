@@ -1,3 +1,4 @@
+$primaryColor: #040335;
 *{
     margin: 0px;
     padding: 0px;
@@ -10,7 +11,7 @@
     align-items: center;
 }
 
-h1,h2,h3,h4,h5,h6,p{
+h1,h2,h3,h4,h5,h6,p,ul{
     margin: 0px;
     padding: 0px;
 }
@@ -70,7 +71,8 @@ h2{
 .powerful,
 .smarter,
 .about-us,
-.business{
+.business,
+footer{
     padding: 100px 0px;
 }
 
@@ -348,11 +350,35 @@ header{
 // business Start
 
 .business{
-    background-color: #040335;
+    background-color: $primaryColor;
     a{
         color: #111111;
     }
 }
+
+
+// Footer
+
+footer{
+    background-color: $primaryColor;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    ul {
+        li{
+            a{
+                margin-bottom: 15px;
+                display: inline-block;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+// Copywrite
+.copywrite{
+    background-color: $primaryColor;
+}
+
 
 
 @media only screen and (max-width:768px){
