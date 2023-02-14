@@ -43,10 +43,7 @@ const anotherName = "John";
 
 
 // Have to assign a value
-anotherName = "Jagan";
-
-
-
+// anotherName = "Jagan";
 console.log(anotherName);
 
 
