@@ -1,7 +1,7 @@
 // document.getElementsByClassName();
 
 
-const items = document.getElementsByClassName("collection-item");
+const items = document.getElementsByClassName("collection-item"); // HTML COLLECTION
 // const tagItems = document.getElementsByTagName("");
 
 // items[0].style.color = "blue";
