@@ -16,4 +16,5 @@ function onClick(event){
     // }
     document.querySelector(".card-action").classList.toggle("rest");
     document.getElementById("task-title").textContent = count;
+    
 }
