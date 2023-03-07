@@ -15,8 +15,10 @@ function loadEventListerners(){
 
     // Add Task Event
     form.addEventListener("submit", addTask);
+
     // Remove Task List
     taskList.addEventListener("click", removeTask);
+
     // Remove All Item From Ul
     clearBtn.addEventListener("click", clearTask);
   
@@ -31,8 +33,8 @@ function getTasks(){
         tasks = JSON.parse(localStorage.getItem("tasks"));
     }
 
-        tasks.forEach(function(task){
-            // Create LI Element
+    tasks.forEach(function(task){
+        // Create LI Element
         const li = document.createElement("li");
 
         // Add Class
@@ -106,11 +108,11 @@ function addTask(e){
 function storeTaskInLocalStorage(task){
     let tasks;
 
-    if(localStorage.getItem("tasks") === null){
+    if(localStorage.getItem("tasks") === null){ // there is no element
         // Run If there no element
         tasks = [];
         console.log("1")
-    } else{
+    } else {
         // After Every time run
         tasks = JSON.parse(localStorage.getItem("tasks"));
         console.log("2")
@@ -122,38 +124,57 @@ function storeTaskInLocalStorage(task){
 
 }
 
-// const arr = [1,2,3,4,5];
-
-// console.log(arr)
-
-// console.log(JSON.parse("[1,2,3,4,5]"));
-
-
-
 
 function removeTask(e){
     if(e.target.parentElement.className === "delete-item secondary-content"){
         e.target.parentElement.parentElement.remove();
         // e.i.a.li.remove();
-    } 
+
+        removeTaskFromLocalStorage(e.target.parentElement.parentElement);
+    }  
+}
+
+function removeTaskFromLocalStorage(taskElement){
+  let tasks;
+
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
+
+  tasks.forEach(function(task, index){
+    if(taskElement.textContent === task){
+        tasks.splice(index, 1);
+    }
+  })
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function clearTask(){
     taskList.innerHTML = null;
+    // Clear from Ls
+    clearTasksFromLocalStorage();
 }
 
-// localStorage.setItem("tasks", "Hello");
-
-// console.log(localStorage.getItem("tasks"));
-
-
-
+function clearTasksFromLocalStorage(){
+    localStorage.clear();
+}
 
 // var arr = [1,2,3,4,5];
 
-// var arrString = JSON.stringify(arr);
+// Remove
+// var result = arr.splice(1,2);
 
-// var stringToArr = JSON.parse(arrString);
+// Add 
+// arr.splice(1,1,[1,2,3]);
 
-// console.log(arrString);
-// console.log(stringToArr);
+// console.log(arr);
+
+// localStorage.setItem("test", arr);
+
+// var get = localStorage.getItem("test"); 
+// get.push(6);
+// console.log(arr);
+// console.log(get);
