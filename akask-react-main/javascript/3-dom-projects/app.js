@@ -129,7 +129,6 @@ function removeTask(e){
     if(e.target.parentElement.className === "delete-item secondary-content"){
         e.target.parentElement.parentElement.remove();
         // e.i.a.li.remove();
-
         removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }  
 }
@@ -162,7 +161,16 @@ function clearTasksFromLocalStorage(){
     localStorage.clear();
 }
 
-// var arr = [1,2,3,4,5];
+var arr = [1,2,3,4,5];
+
+
+// for(let i = 0; i < arr.length; i++){
+//     console.log(arr[i]);
+// }
+
+// arr.forEach(function(element, index){
+//   console.log(index + "-" + element);
+// })
 
 // Remove
 // var result = arr.splice(1,2);
@@ -178,3 +186,5 @@ function clearTasksFromLocalStorage(){
 // get.push(6);
 // console.log(arr);
 // console.log(get);
+
+
