@@ -1,17 +1,17 @@
 
 // Function statement
-greet();
+// greet();
 
 
 function greet() {
     console.log("HI");
 }
 
-greet();
+// greet();
 
 
 // Function Expression
-// anonymousGreet();
+// anonymousGreet(); // error
 
 // Assign them to var
 
@@ -19,7 +19,7 @@ var anonymousGreet = function () {
     console.log("Hello");
 }
 
-anonymousGreet();
+// anonymousGreet();
 
 // pass them around
 
@@ -27,7 +27,24 @@ function log(a) {
     a();
 }
 
-log(anonymousGreet)
+log(anonymousGreet);
+
+var a = 5;
+var b = {name: "Test"}
+function innerTest(){
+    return "Hello";
+}
+var result = innerTest();
+
+var test = function(a,b,result){
+   
+
+    console.log(a,b,result)
+}
+
+test(a,b,result);
+
+// log(anonymousGreet)
 
 // on the fly
 
@@ -36,7 +53,8 @@ log(function(){
 })
 
 
-
+var d = 5;
+console.log(d);
 
 
 
@@ -46,3 +64,10 @@ log(function(){
 
 // greet2("Jagan");
 // greet2("Javid");
+
+
+var e = 6;
+e = 7; // MUtate
+
+const f = 7;
+console.log(f);
