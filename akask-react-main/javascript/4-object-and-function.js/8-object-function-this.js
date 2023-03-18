@@ -8,7 +8,7 @@ function a(){
 }
 // a();
 var b = function(){
-    console.log("Exp", this);
+    console.log("Exp", this);// Its point to window
 }
 
 b();
@@ -16,9 +16,15 @@ b();
 
 var c = {
     name: "The C Object",
-    log: function(){
+    log: function(){ // methode
         // console.log(this);  // its points to direct obj
-        this.name = "Updated C Object";
+        var self = this;
+        self.name = "Updated C Object";
+        let setName = function(newName){
+            self.name = newName; 
+        }
+
+        setName("Updated again, The c object");
     }
 }
 
