@@ -3,15 +3,12 @@ function Person(firstName, lastName){ // parent
     this.lastName = lastName;
 }
 
-
 // Greeting
 Person.prototype.greeting = function(){
     return `Hello there ${this.firstName} ${this.lastName}`;
 }
 
-
 const javid = new Person("Jagan", "Javid");
-
 
 // Customer Object
 
