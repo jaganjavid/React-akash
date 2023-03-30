@@ -1,33 +1,29 @@
-// Book Constructor
-
-function Book(title,author,isbn){
-    this.title = title;
-    this.author = author;
-    this.isbn  = isbn;
+class Book {
+    constructor(title, author, isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
 }
 
-
-function UI(){
-
+class UI {
     // Add Book to list
+    addBookToList(book) {
+        const list = document.querySelector("#book-list");
 
-    UI.prototype.addBookToList = function(book){
-       const list = document.querySelector("#book-list");
+        // Create a tr element
+        const row = document.createElement("tr");
 
-    // Create a tr element
-       const row = document.createElement("tr");
+        row.innerHTML = `
+         <td>${book.title}</td>
+         <td>${book.author}</td>
+         <td>${book.isbn}</td>
+         <td class="delete">X</td>
+        `;
 
-       row.innerHTML =  `
-        <td>${book.title}</td>
-        <td>${book.author}</td>
-        <td>${book.isbn}</td>
-        <td class="delete">X</td>
-       `;
-
-       list.appendChild(row);
+        list.appendChild(row);
     }
-
-    UI.prototype.showAlert = function(message, className){
+    showAlert(message, className) {
         this.clearAlert();
         // Create Div
         const div = document.createElement("div");
@@ -45,35 +41,34 @@ function UI(){
         const form = document.querySelector("#book-form");
 
         // Insert alert
-        container.insertBefore(div,form);
+        container.insertBefore(div, form);
 
-        setTimeout(function(){
+        setTimeout(function () {
             document.querySelector(".alert").remove();
             this.clearAlert();
-        },3000)
+        }, 3000)
 
     }
 
-    UI.prototype.clearAlert = function(){
+    clearAlert() {
         const currentAlert = document.querySelector(".alert");
-        if(currentAlert){
+        if (currentAlert) {
             currentAlert.remove();
         }
     }
-    
-    UI.prototype.deleteBook = function(target){
-        if(target.className === "delete"){
+
+    deleteBook(target) {
+        if (target.className === "delete") {
             target.parentElement.remove();
-    }
+        }
     }
 
-    UI.prototype.clearField = function(){
+    clearField() {
         document.getElementById("title").value = "";
         document.getElementById("author").value = "";
         document.getElementById("isbn").value = "";
     }
 }
-
 
 // Event Listen for submit
 document.getElementById("book-form").addEventListener("submit", function(e){
@@ -114,11 +109,3 @@ document.querySelector("#book-list").addEventListener("click", function(e){
         ui.showAlert("Book Removed", "alert-success");
     }
 })
-
-
-
-
-
-
-
-

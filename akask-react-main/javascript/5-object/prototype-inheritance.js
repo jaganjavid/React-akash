@@ -36,3 +36,5 @@ Customer.prototype.greeting = function(){
 
 console.log(javidCustomer.greeting());
 
+console.log(javidCustomer);
+
