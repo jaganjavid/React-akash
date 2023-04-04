@@ -8,7 +8,7 @@ document.getElementById("task-title").textContent = count;
 
 function onClick(event){
 
-    count++;
+    count += 1;
     // if(count === 1){
     //     document.querySelector(".card-action").classList.add("rest");
     // } else if(count === 2){

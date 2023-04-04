@@ -2,15 +2,14 @@
 
 
 const items = document.getElementsByClassName("collection-item"); // HTML COLLECTION
-// const tagItems = document.getElementsByTagName("");
 
+// const tagItems = document.getElementsByTagName("");
 // items[0].style.color = "blue";
 // items[0].textContent = "Jagan";
 
 // Convert to array
 
 // let lists = Array.from(items);
-
 
 // lists.forEach(function(element, index, arr){
 //     element.style.color = "blue"
@@ -20,6 +19,7 @@ const items = document.getElementsByClassName("collection-item"); // HTML COLLEC
 
 // for(let i = 0; i<items.length; i++){
 //    items[i].style.color = "blue";
+//    items[i].textContent = "blue";
 // }
 
 

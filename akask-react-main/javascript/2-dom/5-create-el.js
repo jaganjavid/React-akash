@@ -19,16 +19,16 @@ li.appendChild(document.createTextNode("Hello World"));
 
 const link = document.createElement("a");
 
+
 link.className = "delete-item secondary-content";
 
 // Add icon html
 
 link.innerHTML = `<i class="fa fa-remove"></i>`;
 
+
 li.appendChild(link);
+
 
 document.querySelector(".collection").appendChild(li);
 
-const div = document.createElement("div");
-
-console.log(div);

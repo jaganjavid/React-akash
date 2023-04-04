@@ -6,6 +6,7 @@
 
 const taskTitle = document.getElementById("task-title");
 
+
 // Change Style
 taskTitle.style.background = "blue";
 taskTitle.style.color = "#ffffff";
@@ -19,9 +20,9 @@ taskTitle.innerHTML = "<p>Hello Jagan Javid</p>";
 // document.querySelector() // ***
 
 
-console.log(document.querySelector("#task-title"));
-console.log(document.querySelector(".card-action"));
-console.log(document.querySelector("h5"));
+// console.log(document.querySelector("#task-title"));
+// console.log(document.querySelector(".card-action"));
+// console.log(document.querySelector("h5"));
 
 document.querySelector("li").style.color = "blue";
 document.querySelector("ul li").style.color = "brown";
