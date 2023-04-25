@@ -3,7 +3,6 @@ document.getElementById("button-2").addEventListener("click", getJson);
 document.getElementById("button-3").addEventListener("click", ExternalAPI);
 
 
-
 function getText(){
     fetch("text.txt").then(function(res){
         return res.text();

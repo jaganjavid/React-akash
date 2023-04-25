@@ -1,8 +1,6 @@
 function ourHttp(){
     this.http = new XMLHttpRequest();
 }
-
-
 // Make an HTTP GET REQUEST
 
 ourHttp.prototype.get = function(url, callback){

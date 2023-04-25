@@ -55,14 +55,14 @@ function loadJson(){
 
         console.log(customers)
 
-        customers.forEach(element => {
+        customers.forEach(customer => {
 
             output += `<ul>
-            <li>ID : ${element.id}</li>
-            <li>Name : ${element.name}</li>
-            <li>Company : ${element.company}</li>
-            <li>Phone : ${element.phone}</li>
-        </ul>`
+                <li>ID : ${customer.id}</li>
+                <li>Name : ${customer.name}</li>
+                <li>Company : ${customer.company}</li>
+                <li>Phone : ${customer.phone}</li>
+             </ul>`
         });
 
         document.getElementById("customers").innerHTML = output;

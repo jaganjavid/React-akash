@@ -24,5 +24,5 @@ class Customer extends Person{
 const javid = new Person("jagan", "javid");
 const josh = new Customer("josh", "sri", "555-555-5555","standard");
 
-console.log(javid)
-console.log(josh)
+console.log(javid.greeting())
+console.log(josh.greeting())
