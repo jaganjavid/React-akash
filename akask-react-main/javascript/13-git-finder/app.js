@@ -1,22 +1,19 @@
 const github = new Github();
 
+const ui = new UI();
 
 const user = document.getElementById("submit-button");
 
-
-
-
 user.addEventListener("click", (e) => {
     // Get the input value
-    const userText = e.target.value;
-
-
-
+    let userText = document.querySelector("#serachUser").value;
     if(userText !== ""){
-        console.log("hello")
         github.getUser(userText)
         .then(data => {
-            console.log(data);
+            ui.showProfile(data);
+            document.querySelector("#serachUser").value = "";
         }).catch(error => console.log(error)) 
     }
+
+    
 })
