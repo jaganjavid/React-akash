@@ -1,0 +1,22 @@
+const person = (function(){
+//   const firstName = "Javid";
+//   const lastName = "Jagan";
+//   return {
+//     getFullName : function(){
+//         return firstName + lastName;
+//     }
+//   };
+// }());
+
+// const person2 = (function(){
+//   const firstName = "Joo";
+//   const lastName = "Doe";
+//   return {
+//     getFullName : function(){
+//         return firstName + lastName;
+//     }
+//   };
+// }());
+
+// console.log(person.getFullName());
+// console.log(person2.getFullName());
