@@ -21,9 +21,9 @@ const ItemCtrl = (function(){
 
     const data = {
         items: [
-            {id:0, name:"clothes", money:5000},
-            {id:1, name:"food", money:2000},
-            {id:2, name:"bike repair", money:3000},
+            {id:0, name:"clothes", money:10},
+            {id:1, name:"food", money:20},
+            {id:2, name:"bike repair", money:30},
         ],
         currentItem: null,
         totalMoney:0
@@ -45,12 +45,43 @@ const ItemCtrl = (function(){
             money = parseInt(money);
 
             // CREATE A NEW ITEM
-            newItem = new item(ID, name, money);
+            newItem = new item(ID, name, money); // obj
 
             // ADD TO ITEM ARRAY
             data.items.push(newItem);
 
             return newItem;
+       },
+       getTotalMoney: function(){
+         let total = 0;
+
+         if(data.items.length > 0){
+             data.items.forEach(function(item){
+                total += item.money;
+
+                data.totalMoney = total;
+             })
+         } else{
+            return data.totalMoney = 0;
+         }
+         return total;
+       },
+       getItemById: function(id){
+          let found = null;
+
+          //LOOP THROUGH ITEMS
+          data.items.forEach(function(item){
+            if(item.id === id){
+                found = item;
+            }
+          })
+          return found;
+       },
+       setCurrentItem: function(item){
+         data.currentItem = item;
+       },
+       getCurrentItem:function(){
+        return data.currentItem;
        }
     }
 
@@ -68,6 +99,7 @@ const UICtrl = (function(){
     backBtn:".back-btn",
     itemName:"#item-name",
     itemMoney:"#item-money",
+    totalMoney:".total-money"
  }   
 
 
@@ -76,7 +108,7 @@ const UICtrl = (function(){
         let html = "";
 
         items.forEach(item => {
-            html += `<li class="collection-item" id="item-1">
+            html += `<li class="collection-item" id=item-${item.id}>
             <strong>${item.name}:</strong> <em>${item.money}$</em>
             <a href="#" class="secondary-content">
                 <i class="fa fa-pencil edit-item"></i>
@@ -93,6 +125,12 @@ const UICtrl = (function(){
         document.querySelector(UISelectors.deleteBtn).style.display = "none";
         document.querySelector(UISelectors.backBtn).style.display = "none";
     },
+    showEditState: function(){
+        document.querySelector(UISelectors.addBtn).style.display = "none";
+        document.querySelector(UISelectors.updateBtn).style.display = "inline";
+        document.querySelector(UISelectors.deleteBtn).style.display = "inline";
+        document.querySelector(UISelectors.backBtn).style.display = "inline";
+    },
     getItemInput: function(){
         return {
             name: document.querySelector(UISelectors.itemName).value,
@@ -104,7 +142,7 @@ const UICtrl = (function(){
         const li = document.createElement("li");
 
         // ADD class to li
-        li.classList = "collection-item";
+        li.className = "collection-item";
 
         // ADD ID 
         li.id = `item-${item.id}`;
@@ -113,10 +151,20 @@ const UICtrl = (function(){
         li.innerHTML = `<strong>${item.name}:</strong> <em>${item.money}$</em>
         <a href="#" class="secondary-content">
           <i class="fa fa-pencil edit-item"></i>
-        </a>`
+        </a>`;
 
         // INSERT ITEM TO UL
         document.querySelector(UISelectors.itemList).appendChild(li);
+    },
+    showTotalMoney:function(total){
+      document.querySelector(UISelectors.totalMoney).textContent = total;
+    },
+    getUISelectors: function(){
+        return UISelectors;
+    },
+    addItemToForm: function(){
+        document.querySelector(UISelectors.itemName).value = ItemCtrl.getCurrentItem().name;
+        document.querySelector(UISelectors.itemMoney).value = ItemCtrl.getCurrentItem().money;
     }
  }
 }())
@@ -127,8 +175,15 @@ const App = (function(ItemCtrl,UICtrl){
 
     const loadEventListeners = function(){
 
+        // GET ALL UI SELECTORs
+        const UISelectors = UICtrl.getUISelectors();
+
+
         // ADD ITEM EVENT
-        document.querySelector(".add-btn").addEventListener("click", itemAddSubmit);
+        document.querySelector(UISelectors.addBtn).addEventListener("click", itemAddSubmit);
+
+        // EDIT ICON CLICK EVENT
+        document.querySelector(UISelectors.itemList).addEventListener("click", itemEditClick);
     }
 
     const itemAddSubmit = function(e){
@@ -145,6 +200,39 @@ const App = (function(ItemCtrl,UICtrl){
             
             // ADD ITEM TO UI LIST
             UICtrl.addListItem(newItem);
+
+            // GET INPUT MONEY
+            const totalMoney = ItemCtrl.getTotalMoney();
+
+            // ADD TOTAL MONEY TO UI
+            UICtrl.showTotalMoney(totalMoney);
+
+        }
+    }
+
+    const itemEditClick = function(e){
+        if(e.target.classList.contains("edit-item")){
+            
+            const listID = e.target.parentElement.parentElement.id;
+
+            // BREAK INTO AN ARRAY
+            const listArr = listID.split("-");   
+            
+            // GET THE ACTUAL ID
+            const id = parseInt(listArr[1]);
+
+            // SHOW ALL BUTTON
+            UICtrl.showEditState();
+
+            // GET ITEM
+            const itemToEdit = ItemCtrl.getItemById(id);
+            
+            // SET CURRENT ITEM
+            ItemCtrl.setCurrentItem(itemToEdit);
+
+            // ADD ITEM TO FORM
+            UICtrl.addItemToForm();
+
         }
     }
 
@@ -157,7 +245,13 @@ const App = (function(ItemCtrl,UICtrl){
         const items = ItemCtrl.getItem();
 
         if(items.length > 0){
+
             UICtrl.populateItemList(items);
+
+            const totalMoney = ItemCtrl.getTotalMoney();
+
+            UICtrl.showTotalMoney(totalMoney);
+
             document.querySelector(".no-item").style.display = "none";
         } else {
             document.querySelector(".no-item").style.display = "block";
