@@ -82,6 +82,35 @@ const ItemCtrl = (function(){
        },
        getCurrentItem:function(){
         return data.currentItem;
+       },
+       updateItem: function(name, money){
+         money = parseInt(money);
+
+         let found = null;
+
+         data.items.forEach(function(item){
+            if(item.id === data.currentItem.id){
+                item.name = name,
+                item.money = money,
+                found = item
+            }
+         })
+
+         return found;
+       },
+       deleteItem: function(id){
+        // GET IDS
+        const ids = data.items.map(function(item){
+            return item.id;
+        })
+
+        // GET INDEX
+        const index = ids.indexOf(id);
+
+        data.items.splice(index, 1);
+       },
+       clearAllItems: function(){
+           data.items = [];
        }
     }
 
@@ -93,10 +122,12 @@ const UICtrl = (function(){
 
  const UISelectors = {
     itemList:"#item-list",
+    listItems: ".collection-item",
     addBtn: ".add-btn",
     updateBtn: ".update-btn",
     deleteBtn:".delete-btn",
     backBtn:".back-btn",
+    clearBtn:".clear-btn",
     itemName:"#item-name",
     itemMoney:"#item-money",
     totalMoney:".total-money"
@@ -124,6 +155,10 @@ const UICtrl = (function(){
         document.querySelector(UISelectors.updateBtn).style.display = "none";
         document.querySelector(UISelectors.deleteBtn).style.display = "none";
         document.querySelector(UISelectors.backBtn).style.display = "none";
+    },
+    clearInputState: function(){
+       document.querySelector(UISelectors.itemName).value = "";
+       document.querySelector(UISelectors.itemMoney).value = "";
     },
     showEditState: function(){
         document.querySelector(UISelectors.addBtn).style.display = "none";
@@ -165,6 +200,38 @@ const UICtrl = (function(){
     addItemToForm: function(){
         document.querySelector(UISelectors.itemName).value = ItemCtrl.getCurrentItem().name;
         document.querySelector(UISelectors.itemMoney).value = ItemCtrl.getCurrentItem().money;
+    },
+    updateListItem: function(item){
+        let listItems = document.querySelectorAll(UISelectors.listItems);
+
+        listItems.forEach(function(listItem){
+            const itemID = listItem.getAttribute("id");
+
+            if(itemID === `item-${item.id}`){
+                document.querySelector(`#${itemID}`).innerHTML = `
+                <strong>${item.name}:</strong> <em>${item.money}$</em>
+                <a href="#" class="secondary-content">
+                  <i class="fa fa-pencil edit-item"></i>
+                </a>`;
+            }
+        })
+    },
+    deleteListItem: function(id){
+       const itemID = `#item-${id}`;
+       const item = document.querySelector(itemID);
+       item.remove();
+    },
+    clearItems: function(){
+
+        // const collection = document.querySelector(UISelectors.itemList);
+        // collection.innerHTML = "";
+
+        let listItems = document.querySelectorAll(UISelectors.listItems);
+
+        listItems.forEach(function(item){
+            item.remove();
+        })
+        
     }
  }
 }())
@@ -175,7 +242,7 @@ const App = (function(ItemCtrl,UICtrl){
 
     const loadEventListeners = function(){
 
-        // GET ALL UI SELECTORs
+        // GET ALL UI SELECTOR
         const UISelectors = UICtrl.getUISelectors();
 
 
@@ -184,8 +251,25 @@ const App = (function(ItemCtrl,UICtrl){
 
         // EDIT ICON CLICK EVENT
         document.querySelector(UISelectors.itemList).addEventListener("click", itemEditClick);
+
+        // ITEM TO UPDATE
+        document.querySelector(UISelectors.updateBtn).addEventListener("click", itemUpdateSubmit);
+
+        // ITEM TO DELETE
+        document.querySelector(UISelectors.deleteBtn).addEventListener("click", itemDeleteSubmit);
+
+        // ITEM TO BACK
+        document.querySelector(UISelectors.backBtn).addEventListener("click", function(e){
+            UICtrl.clearEditState();
+            UICtrl.clearInputState();
+        })
+
+        // ITEMS TO CLEAR
+        document.querySelector(UISelectors.clearBtn).addEventListener("click", clearAllItemsClick);
     }
 
+
+    // ADD ITEM
     const itemAddSubmit = function(e){
         e.preventDefault();
         
@@ -207,10 +291,15 @@ const App = (function(ItemCtrl,UICtrl){
             // ADD TOTAL MONEY TO UI
             UICtrl.showTotalMoney(totalMoney);
 
+            // CLEAR A UI INPUT
+            UICtrl.clearInputState();
+
         }
     }
 
+    // ITEM TO EDIT
     const itemEditClick = function(e){
+        e.preventDefault();
         if(e.target.classList.contains("edit-item")){
             
             const listID = e.target.parentElement.parentElement.id;
@@ -234,6 +323,80 @@ const App = (function(ItemCtrl,UICtrl){
             UICtrl.addItemToForm();
 
         }
+
+        
+    }
+
+    // ITEM TO UPDATE
+
+    const itemUpdateSubmit = function(e){
+        e.preventDefault();
+        // GET ITEM INPUT
+        const input = UICtrl.getItemInput();
+
+        // UPDATE ITEM
+        const updatedItem = ItemCtrl.updateItem(input.name, input.money);
+
+        // UPDATE UI
+        UICtrl.updateListItem(updatedItem);
+
+        // GET TOTAL MONEY
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // SHOW TOTAL MONET
+        UICtrl.showTotalMoney(totalMoney);
+
+        // CLEAR UI UPDATE BUTTON
+        UICtrl.clearEditState();
+
+        // CLEAR A UI INPUT
+        UICtrl.clearInputState();
+
+    }
+
+    // ITEM TO DELETE
+    const itemDeleteSubmit = function(e){
+        e.preventDefault();
+        
+        // GET CURRENT ITEM 
+        const currentItem = ItemCtrl.getCurrentItem();
+
+        // DELETE FROM DATE STRUCTURE
+        ItemCtrl.deleteItem(currentItem.id);
+
+        // DELETE FROM UI
+        UICtrl.deleteListItem(currentItem.id);
+
+        // GET TOTAL MONEY
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // SHOW TOTAL MONET
+        UICtrl.showTotalMoney(totalMoney);
+
+        // CLEAR UI UPDATE BUTTON
+        UICtrl.clearEditState();
+
+        // CLEAR A UI INPUT
+        UICtrl.clearInputState();
+
+    }
+
+    // ITEM TO CLEAR
+
+    const clearAllItemsClick = function(e){
+        e.preventDefault();
+
+        // CLEAR ALL FROM DATA STRUCTURE
+        ItemCtrl.clearAllItems();
+
+        // CLEAR ALL FROM UI
+        UICtrl.clearItems();
+
+        // GET TOTAL MONEY
+        const totalMoney = ItemCtrl.getTotalMoney();
+
+        // SHOW TOTAL MONET
+        UICtrl.showTotalMoney(totalMoney);
     }
 
 
