@@ -1,9 +1,83 @@
 // ITEM CONTROLLER, UI CONTROLLER, Storage Controller
 
 
-// const StorageCtrl = (function(){
-    
-// }());
+const StorageCtrl = (function(){
+    return {
+        storeItem:function(item){
+            let items;
+
+            // CHECK IF ANY ITEMS IN ARRAY
+            if(localStorage.getItem("items") === null){
+
+                items = [];
+
+                // PUSH NEW ITEM 
+                items.push(item);
+
+                // SET LS
+                localStorage.setItem("items", JSON.stringify(items));
+                console.log(1);
+
+            } else {
+
+                // GET THE EXISTING DATA FROM LS
+                items = JSON.parse(localStorage.getItem("items"));
+
+                // PUSH THE NEW ITEM
+                items.push(item)
+
+                // RESET LS
+                localStorage.setItem("items", JSON.stringify(items));
+                console.log(2);
+            }
+        },
+        getItem: function(){
+            let items;
+
+            // CHECK IF ANY ITEMS IN ARRAY
+            if(localStorage.getItem("items") === null){
+
+                items = [];
+
+            } else {
+
+                // GET THE EXISTING DATA FROM LS
+                items = JSON.parse(localStorage.getItem("items"));
+
+            }
+
+            return items;
+        },
+        updateItemLS: function(updatedItem){
+            let items = JSON.parse(localStorage.getItem("items"));
+
+            items.forEach(function(item, index){
+                if(updatedItem.id === item.id){
+                    items.splice(index, 1, updatedItem)
+                }
+            })
+
+            // RESET THE ITEMS ARRAY IN LS
+            localStorage.setItem("items", JSON.stringify(items));
+        },
+        deleteItemLS: function(id){
+
+            let items = JSON.parse(localStorage.getItem("items"));
+
+            items.forEach(function(item, index){
+                if(id === item.id){
+                    items.splice(index, 1);
+                }
+            })
+
+            // RESET THE ITEMS ARRAY IN LS
+            localStorage.setItem("items", JSON.stringify(items));
+        },
+        clearItemLS: function(){
+            localStorage.removeItem("items");
+        }
+    }
+}());
 
 
 // ITEM CONTROLLER
@@ -20,11 +94,12 @@ const ItemCtrl = (function(){
     // DATA STRUCTURE / STATE
 
     const data = {
-        items: [
-            {id:0, name:"clothes", money:10},
-            {id:1, name:"food", money:20},
-            {id:2, name:"bike repair", money:30},
-        ],
+        // items: [
+        //     {id:0, name:"clothes", money:10},
+        //     {id:1, name:"food", money:20},
+        //     {id:2, name:"bike repair", money:30},
+        // ],
+        items: StorageCtrl.getItem(),
         currentItem: null,
         totalMoney:0
     }
@@ -238,7 +313,7 @@ const UICtrl = (function(){
 
 // APP CONTROLLER
 
-const App = (function(ItemCtrl,UICtrl){
+const App = (function(ItemCtrl,UICtrl,StorageCtrl){
 
     const loadEventListeners = function(){
 
@@ -291,8 +366,13 @@ const App = (function(ItemCtrl,UICtrl){
             // ADD TOTAL MONEY TO UI
             UICtrl.showTotalMoney(totalMoney);
 
+            // ADD TO STORAGE
+            StorageCtrl.storeItem(newItem);
+
             // CLEAR A UI INPUT
             UICtrl.clearInputState();
+
+            document.querySelector(".no-item").style.display = "none";
 
         }
     }
@@ -346,6 +426,9 @@ const App = (function(ItemCtrl,UICtrl){
         // SHOW TOTAL MONET
         UICtrl.showTotalMoney(totalMoney);
 
+        // UPDATE LS
+        StorageCtrl.updateItemLS(updatedItem);
+
         // CLEAR UI UPDATE BUTTON
         UICtrl.clearEditState();
 
@@ -370,6 +453,9 @@ const App = (function(ItemCtrl,UICtrl){
         // GET TOTAL MONEY
         const totalMoney = ItemCtrl.getTotalMoney();
 
+        // DELETE FROM LS 
+        StorageCtrl.deleteItemLS(currentItem.id);
+                
         // SHOW TOTAL MONET
         UICtrl.showTotalMoney(totalMoney);
 
@@ -378,6 +464,12 @@ const App = (function(ItemCtrl,UICtrl){
 
         // CLEAR A UI INPUT
         UICtrl.clearInputState();
+
+        const getLength = ItemCtrl.getItem();
+
+        if(getLength.length === 0){
+            document.querySelector(".no-item").style.display = "block";
+        }
 
     }
 
@@ -392,11 +484,16 @@ const App = (function(ItemCtrl,UICtrl){
         // CLEAR ALL FROM UI
         UICtrl.clearItems();
 
+        StorageCtrl.clearItemLS();
+
         // GET TOTAL MONEY
         const totalMoney = ItemCtrl.getTotalMoney();
 
         // SHOW TOTAL MONET
         UICtrl.showTotalMoney(totalMoney);
+
+        // RELODE
+        window.location.reload();
     }
 
 
@@ -422,9 +519,10 @@ const App = (function(ItemCtrl,UICtrl){
 
         loadEventListeners();
 
+
     }
    }
-}(ItemCtrl,UICtrl));
+}(ItemCtrl,UICtrl,StorageCtrl));
 
 
 // INTITIALIZE APP
